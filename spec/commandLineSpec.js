@@ -1,11 +1,13 @@
 const shell = require('shelljs')
 
 describe('command line', () => {
+
   it('no output throws error', () => {
     expect(
       shell.exec('node src/cli --input "spec/assets/test-folder1/**"').code
     ).toBe(1)
   })
+
   it('happy path', () => {
     expect(
       shell.exec(
@@ -22,4 +24,5 @@ describe('command line', () => {
     )
     shell.rm('spec/assets/test-folder1.json')
   })
+  
 })
