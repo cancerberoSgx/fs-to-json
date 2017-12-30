@@ -1,8 +1,9 @@
 {
   "name": "fs-to-json",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "transform given folder / glob to a json object / file",
   "main": "index.js",
+  "bin": "cli.js",
   "scripts": {
     "test": "node node_modules/jasmine/bin/jasmine"
   },
