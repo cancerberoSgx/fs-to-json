@@ -3,7 +3,7 @@
 
 
 
-Pack a folder in a JSON file. Supports input globs
+Pack folder into a JSON file. Supports input globs.
 
 # Command line
 
