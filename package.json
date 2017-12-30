@@ -1,0 +1,29 @@
+{
+  "name": "fs-to-json",
+  "version": "1.0.0",
+  "description": "transform given folder / glob to a json object / file",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/jasmine/bin/jasmine"
+  },
+  "keywords": [
+    "json",
+    "fs",
+    "files",
+    "folder",
+    "glob",
+    "serialization"
+  ],
+  "author": "cancerberosgx",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "glob": "^7.1.2",
+    "istextorbinary": "^2.1.0",
+    "shelljs": "^0.7.8",
+    "yargs-parser": "^8.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  }
+}
