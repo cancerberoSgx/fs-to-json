@@ -4,8 +4,8 @@ const fs = require('fs')
 const isText = require('istextorbinary').isText
 const async = require('async')
 
-function fs2json (config) {
-  config.transformFileName = config.transformFileName || (v=>v); 
+function fs2json(config) {
+  config.transformFileName = config.transformFileName || (v => v);
 
   return new Promise((resolve, reject) => {
     var data = {}
@@ -29,12 +29,12 @@ function fs2json (config) {
                 reject(err)
               }
               let filename = config.transformFileName(file)
-              let content = (data[filename] = {
-                filename,
-                content: isText ? buffer.toString() : buffer.toString('base64'),
+              data[filename] = {
                 isBinary: !isText
-              })
-              next()
+              }
+              data[filename][config.filenamePropertyName || 'fileName'] = filename
+              data[filename][config.contentPropertyName || 'content'] = isText ? buffer.toString() : buffer.toString('base64'),
+                next()
             })
           })
         },
@@ -42,8 +42,15 @@ function fs2json (config) {
           if (err) {
             reject(err)
           }
-          shell.ShellString(JSON.stringify(data)).to(config.output)
-          resolve(data)
+          let outputData = data
+          if (config.outputAsArray) {
+            outputData = []
+            Object.keys(data).forEach(key => {
+              outputData.push(data[key])
+            })
+          }
+          shell.ShellString(config.formatted ? JSON.stringify(outputData, null, 2) : JSON.stringify(outputData)).to(config.output)
+          resolve(outputData)
         }
       )
     })

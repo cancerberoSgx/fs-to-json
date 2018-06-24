@@ -5,7 +5,13 @@ describe('command line', () => {
   it('no output throws error', () => {
     expect(
       shell.exec('node src/cli --input "spec/assets/test-folder1/**"').code
-    ).toBe(1)
+    ).not.toBe(0)
+  })
+  
+  it('no input throws error', () => {
+    expect(
+      shell.exec('node src/cli --output foo.json').code
+    ).not.toBe(0)
   })
 
   it('happy path', () => {

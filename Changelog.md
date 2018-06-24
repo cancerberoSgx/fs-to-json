@@ -9,3 +9,5 @@
  * basic issues
 
  # 0.0.5
+
+  * added formatted, filenamePropertyName, contentPropertyName , outputAsArray options
