@@ -38,7 +38,8 @@ fs2json({input: 'src/data/**/*.json', output: 'src/data.json'})
   // something went wrong
 })
 
-async function packResources(outputFile){
+// an other example that packs examples .ts files and handlebars templates so these files can be read at runtime
+async function packResources(){
   var examplesPack = await fs2json({
     input: 'src/examples/**/*.ts', 
     output: 'src/examples.json', 
@@ -52,18 +53,58 @@ async function packResources(outputFile){
 }
 ```
 
-
 # Options
 
 (Apply both to node.js API and CLI)
 
- * `input` (string - glob) input files, for example `**/*` will serialize current folder as it is
- * `output` (string) output json file
- <!-- * `debug` (boolean) -->
- * `formatted` (boolean) prettify JSON output or should be minified
- * `filenamePropertyName` (string) custom name for "fileName" property
- * `contentPropertyName` (string) custom name for "content" property
+ * `input` (string - glob) Mandatory .input files, for example `**/*` will serialize current folder as it is
+ * `output` (string) Optional. Output json file to be written. If not provided it will print JSON to stdout
+ * `formatted` (boolean) prettify JSON output or should be minified. Default: false
+ * `filenamePropertyName` (string) custom name for "fileName" property. Default: 'fileName'
+ * `contentPropertyName` (string) custom name for "content" property. Default: 'content'
  * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`
+
+# Tips
+
+## require() JSON files 
+
+If you pack .json files in your project then they can be easily reading dynamically by just calling `require()` this, for example:
+
+```js
+const templatesFiles = require('./assets/templates.json')
+let templates
+function compileTemplates() {
+  templates = {}
+  Object.keys(templatesFiles).forEach(name => {
+    templates[name] = handlebars.compile(templatesFiles[name].content)
+})
+function renderTemplate(templateName, context){
+  if(!templates){
+    compileTemplates()
+  }
+  return templates[templateName](context)
+}
+```
+
+## import JSON files in TypeScript
+
+Create a declarations.d.ts somewhere in your project: 
+
+```typescript
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
+```
+
+And then import it in from any source file like this:
+
+```typescript
+import * as templateFiles from './templates/files.json'
+```
+
+Maybe you will need to cast te object to `any` or you can do a better job defining the JSON structure using other type for the `value` property in the `"*.json"`  declaration 
+
 
 # TODO / ROADMAP
 

@@ -19,3 +19,6 @@
 # 0.1.1
 
  * config.output optional - if not passed cli prints to stdout
+ * api basic specs
+
+# 0.1.2

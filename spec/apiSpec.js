@@ -12,6 +12,7 @@ describe('api', () => {
   function test(data) {
     ['spec/assets/test-folder1/some.txt', 'spec/assets/test-folder1/imgs/face.png'].forEach(f => expect(Object.keys(data).includes(f)))
   }
+
   it('basic cal should work', (done) => {
     fs2json({ input: 'spec/assets/test-folder1/**/*', output: outputFile })
       .then(data => {
@@ -24,5 +25,7 @@ describe('api', () => {
       })
   })
 
-
+  it('require json file tip in readme should be true', () => {
+    expect(require('./assets/test.json').can).toBe('be required')
+  })
 })
