@@ -1,7 +1,7 @@
 {
   "name": "fs-to-json",
-  "version": "0.1.1",
-  "description": "transform given folder / glob to a json object / file",
+  "version": "0.1.2",
+  "description": "Serialize given globs of files to JSON. Useful to pack files at compile-time that need to be imported at runtime",
   "main": "src/index.js",
   "bin": "src/cli.js",
   "scripts": {

@@ -22,3 +22,11 @@
  * api basic specs
 
 # 0.1.2
+
+ * API - output can be a WriteStream
+
+# 0.1.3
+
+ * API output writtable stream promise resolved issue
+
+# 0.1.4

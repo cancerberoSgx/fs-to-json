@@ -50,11 +50,18 @@ function fs2json(config) {
             })
           }
           const outputString = config.formatted ? JSON.stringify(outputData, null, 2) : JSON.stringify(outputData)
-          if(config.output){
+          if (typeof config.output === 'string') {
             shell.ShellString(outputString).to(config.output)
           }
-          else {
-            console.log(outputString)            
+          else if (config.output && typeof config.output.write === 'function') {
+            config.output.write(outputString, (error) => {
+              if (error) {
+                reject(error)
+              }
+              else {
+                resolve(outputData)
+              }
+            })
           }
           resolve(outputData)
         }

@@ -5,7 +5,7 @@
 
 Pack folder into a JSON file. Supports input globs.
 
-# Command line
+# Command line (CLI)
 
 ```sh
 # install globally
@@ -21,7 +21,7 @@ fs-to-json --input **/* --output current-folder-files.json \
   --filenamePropertyName fname --outputAsArray true --formatted true
 ```
 
-# Node API
+# Nodejs API
 
 ```sh
 npm install --save fs-to-json
@@ -46,8 +46,8 @@ async function packResources(){
     outputAsArray: true
   })
   var templatesPack = await fs2json({
-    input: 'src/examples/**/*.ts', 
-    output: 'src/templates/**/*.hbs'
+    input: 'src/templates/**/*.hbs', 
+    output: 'assets/templates.json',
     filenamePropertyName: 'template'
   })
 }
@@ -58,11 +58,13 @@ async function packResources(){
 (Apply both to node.js API and CLI)
 
  * `input` (string - glob) Mandatory .input files, for example `**/*` will serialize current folder as it is
- * `output` (string) Optional. Output json file to be written. If not provided it will print JSON to stdout
+ * `output` (string) Optional. Output json file to be written. In the CLI, if omitted, it will print to stdout. In the API, if it's a `WritableStream` it will `write()` there and resolve the promise [when the data is flushed](https://nodejs.org/api/stream.html#stream_writable_write_chunk_encoding_callback)
  * `formatted` (boolean) prettify JSON output or should be minified. Default: false
  * `filenamePropertyName` (string) custom name for "fileName" property. Default: 'fileName'
  * `contentPropertyName` (string) custom name for "content" property. Default: 'content'
- * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`
+ * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`. Default: false
+
+
 
 # Tips
 
@@ -78,8 +80,8 @@ function compileTemplates() {
   Object.keys(templatesFiles).forEach(name => {
     templates[name] = handlebars.compile(templatesFiles[name].content)
 })
-function renderTemplate(templateName, context){
-  if(!templates){
+function renderTemplate(templateName, context) {
+  if(!templates) {
     compileTemplates()
   }
   return templates[templateName](context)
@@ -106,8 +108,8 @@ import * as templateFiles from './templates/files.json'
 Maybe you will need to cast te object to `any` or you can do a better job defining the JSON structure using other type for the `value` property in the `"*.json"`  declaration 
 
 
-# TODO / ROADMAP
+# TODO / IDEAS
 
  * sync version
- * several globs as input - comma separated or multiple --input
+ * --input can be array of globs 
  * provide outputAsTree using  typescript-in-the-browser/monaco-typescript-project-util/src/ui-util/fileTreeUtil.ts

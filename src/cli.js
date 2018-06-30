@@ -8,7 +8,7 @@ function main() {
   let config = {
     input: args.input,
     // debug: args.debug, 
-    output: args.output,
+    output: args.output ? args.output : process.stdout,
     // format output json or minified
     formatted: args.formatted,
     // custom name for "fileName" property
