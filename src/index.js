@@ -49,7 +49,13 @@ function fs2json(config) {
               outputData.push(data[key])
             })
           }
-          shell.ShellString(config.formatted ? JSON.stringify(outputData, null, 2) : JSON.stringify(outputData)).to(config.output)
+          const outputString = config.formatted ? JSON.stringify(outputData, null, 2) : JSON.stringify(outputData)
+          if(config.output){
+            shell.ShellString(outputString).to(config.output)
+          }
+          else {
+            console.log(outputString)            
+          }
           resolve(outputData)
         }
       )

@@ -18,13 +18,13 @@ function main() {
     //  instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`
     outputAsArray: args.outputAsArray
   }
-  if (!config.input || !config.output) {
-    console.log('Incorrect call, aborting. ')
+  if (!config.input) {
+    console.log('Incorrect call, aborting. --input argument is mandatory')
     process.exit(1)
   }
   fs2json(config)
-    .then(() => {
-      console.log('DONE')
+    .then((data) => {
+      // don't log anything since we could be outputing JSON to stdout and it will invalidate it
     })
     .catch(ex => {
       console.log('ERROR', ex, ex.stack)

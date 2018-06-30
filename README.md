@@ -69,3 +69,4 @@ async function packResources(outputFile){
 
  * sync version
  * several globs as input - comma separated or multiple --input
+ * provide outputAsTree using  typescript-in-the-browser/monaco-typescript-project-util/src/ui-util/fileTreeUtil.ts

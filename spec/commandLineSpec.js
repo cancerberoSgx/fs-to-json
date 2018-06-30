@@ -1,17 +1,31 @@
 const shell = require('shelljs')
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000
+shell.config.silent = true
+
 describe('command line', () => {
 
-  it('no output throws error', () => {
-    expect(
-      shell.exec('node src/cli --input "spec/assets/test-folder1/**"').code
-    ).not.toBe(0)
-  })
-  
-  it('no input throws error', () => {
+  it('no --input throws error', () => {
     expect(
       shell.exec('node src/cli --output foo.json').code
     ).not.toBe(0)
+  })
+
+  function test(data) {
+    expect(
+      data['spec/assets/test-folder1/imgs/face.png'].content.indexOf('iVBORw0K')
+    ).toBe(0)
+    expect(data['spec/assets/test-folder1/some.txt'].content).toBe(
+      'hello world'
+    )
+    shell.rm('spec/assets/test-folder1.json')
+  }
+
+  it('no --output should print valid json to stdout', () => {
+    const p = shell.exec('node src/cli --input "spec/assets/test-folder1/**"')
+    expect(p.code).toBe(0)
+    test(JSON.parse(p.stdout.toString()))
+    shell.rm('spec/assets/test-folder1.json')
   })
 
   it('happy path', () => {
@@ -20,15 +34,7 @@ describe('command line', () => {
         'node src/cli --input "spec/assets/test-folder1/**" --output spec/assets/test-folder1.json'
       ).code
     ).toBe(0)
-
-    let data = JSON.parse(shell.cat('spec/assets/test-folder1.json').toString())
-    expect(
-      data['spec/assets/test-folder1/imgs/face.png'].content.indexOf('iVBORw0K')
-    ).toBe(0)
-    expect(data['spec/assets/test-folder1/some.txt'].content).toBe(
-      'hello world'
-    )
-    shell.rm('spec/assets/test-folder1.json')
+    test(JSON.parse(shell.cat('spec/assets/test-folder1.json').toString()))
   })
-  
+
 })
