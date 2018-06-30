@@ -57,4 +57,4 @@ function fs2json(config) {
   })
 }
 
-module.exports = fs2json
+module.exports = { fs2json }

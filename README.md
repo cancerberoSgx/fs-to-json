@@ -28,9 +28,30 @@ npm install --save fs-to-json
 ```
 
 ```javascript
-const tool = require('fs-to-json')
-tool({input: 'src/data/**/*.json', output: 'src/data.json'}).then().catch()
+const fs2json = require('fs-to-json').fs2json
+
+fs2json({input: 'src/data/**/*.json', output: 'src/data.json'})
+.then(data => {
+  // the same data that was written in output file
+})
+.catch(error => {
+  // something went wrong
+})
+
+async function packResources(outputFile){
+  var examplesPack = await fs2json({
+    input: 'src/examples/**/*.ts', 
+    output: 'src/examples.json', 
+    outputAsArray: true
+  })
+  var templatesPack = await fs2json({
+    input: 'src/examples/**/*.ts', 
+    output: 'src/templates/**/*.hbs'
+    filenamePropertyName: 'template'
+  })
+}
 ```
+
 
 # Options
 
@@ -44,6 +65,7 @@ tool({input: 'src/data/**/*.json', output: 'src/data.json'}).then().catch()
  * `contentPropertyName` (string) custom name for "content" property
  * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`
 
-# TODO
+# TODO / ROADMAP
 
+ * sync version
  * several globs as input - comma separated or multiple --input

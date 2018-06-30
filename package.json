@@ -1,6 +1,6 @@
 {
   "name": "fs-to-json",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "transform given folder / glob to a json object / file",
   "main": "src/index.js",
   "bin": "src/cli.js",

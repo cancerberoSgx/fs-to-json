@@ -11,3 +11,7 @@
  # 0.0.5
 
   * added formatted, filenamePropertyName, contentPropertyName , outputAsArray options
+
+# 0.1.0
+
+ * signature changed so I can use it with browserify/static-module for a Browserify transformation. now exporting a function property sync
