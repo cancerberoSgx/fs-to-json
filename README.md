@@ -63,6 +63,7 @@ async function packResources(){
  * `filenamePropertyName` (string) custom name for "fileName" property. Default: 'fileName'
  * `contentPropertyName` (string) custom name for "content" property. Default: 'content'
  * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`. Default: false
+ * `transformFileName` (string => string) (only js API): Function to change the filenames that receive the original name and returns the new name. Optional.
 
 
 
