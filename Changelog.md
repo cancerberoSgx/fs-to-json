@@ -31,9 +31,12 @@
 
  * API output writtable stream promise resolved issue
 
-## 0.1.4
+
+## 0.1.5
 
  * transformFileName in js API documented
  * .d.ts
 
-## 0.1.5
+## 0.1.6
+
+ * outputAsArray deprecated in favor of outputStyle: 'array'

@@ -16,7 +16,7 @@ function main() {
     // custom name for "content" property
     contentPropertyName: args.contentPropertyName,
     //  instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`
-    outputAsArray: args.outputAsArray
+    outputStyle: args.outputStyle || 'object'
   }
   if (!config.input) {
     console.log('Incorrect call, aborting. --input argument is mandatory')

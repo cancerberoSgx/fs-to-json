@@ -46,7 +46,7 @@ async function packResources(){
   var examplesPack = await fs2json({
     input: 'src/examples/**/*.ts', 
     output: 'src/examples.json', 
-    outputAsArray: true
+    outputStyle: 'array'
   })
   var templatesPack = await fs2json({
     input: 'src/templates/**/*.hbs', 
@@ -65,7 +65,7 @@ async function packResources(){
  * `formatted` (boolean) prettify JSON output or should be minified. Default: false
  * `filenamePropertyName` (string) custom name for "fileName" property. Default: 'fileName'
  * `contentPropertyName` (string) custom name for "content" property. Default: 'content'
- * `outputAsArray` (boolean) instead of a map `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` output an array of type `{fileName: string, content: string, isBinary: boolean}[]`. Default: false
+ * `outputStyle` ('object' or 'array') Default is 'object' in which case will output an object whic keys are the filenames and values the file objects like : `{[fileName: string]: {fileName: string, content: string, isBinary: boolean}}` . if outputStyle==='array' then will output just the array of file objects like: `{fileName: string, content: string, isBinary: boolean}[]`.
  * `transformFileName` (string => string) (only js API): Function to change the filenames that receive the original name and returns the new name. Optional.
 
 

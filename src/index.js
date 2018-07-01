@@ -43,7 +43,7 @@ function fs2json(config) {
             reject(err)
           }
           let outputData = data
-          if (config.outputAsArray) {
+          if (config.outputStyle==='array') {
             outputData = []
             Object.keys(data).forEach(key => {
               outputData.push(data[key])

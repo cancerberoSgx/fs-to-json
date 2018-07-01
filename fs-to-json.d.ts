@@ -5,7 +5,8 @@ declare module 'fs-to-json' {
     transformFileName?: (string) => string
     filenamePropertyName?: string
     contentPropertyName?: string
-    formatted: boolean
+    formatted?: boolean,
+    outputStyle?: 'object' | 'array'
   }
   export function fs2json(config: Config): Promise<any>
 }
