@@ -40,3 +40,5 @@
 ## 0.1.6
 
  * outputAsArray deprecated in favor of outputStyle: 'array'
+
+## 0.1.7
