@@ -2,8 +2,11 @@
 [![Dependencies](https://david-dm.org/cancerberosgx/fs-to-json.svg)](https://david-dm.org/cancerberosgx/fs-to-json)
 
 
+ * Pack files and folders into a JSON file. 
+ * Supports globs input 
+ * CIL and NodeJs API
 
-Pack folder into a JSON file. Supports input globs.
+Example usage: [br-fs-to-json](https://github.com/cancerberoSgx/br-fs-to-json) is a Browserify transformation, which allows developer to pack files and folders at compile time that are embedded as JavaScript variable values, so their content is easily accessible dinamically at runtime. No extrange tools, just JavaScript code and Browserify. 
 
 # Command line (CLI)
 

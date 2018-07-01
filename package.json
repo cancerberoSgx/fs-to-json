@@ -4,7 +4,7 @@
   "description": "Serialize given globs of files to JSON. Useful to pack files at compile-time that need to be imported at runtime",
   "main": "src/index.js",
   "bin": "src/cli.js",
-  "typings": "fs-to.json.d.ts",
+  "typings": "fs-to-json.d.ts",
   "scripts": {
     "test": "node node_modules/jasmine/bin/jasmine"
   },
@@ -16,8 +16,9 @@
     "glob",
     "serialization"
   ],
+  "repository": "https://github.com/cancerberoSgx/fs-to-json",
   "author": "cancerberosgx",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "async": "^2.6.0",
     "glob": "^7.1.2",
