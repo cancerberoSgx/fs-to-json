@@ -1,6 +1,6 @@
 {
   "name": "fs-to-json",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Serialize given globs of files to JSON. Useful to pack files at compile-time that need to be imported at runtime",
   "main": "src/index.js",
   "bin": "src/cli.js",

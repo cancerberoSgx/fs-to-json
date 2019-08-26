@@ -33,6 +33,7 @@ function fs2json(config) {
                 isBinary: !isText
               }
               data[filename][config.filenamePropertyName || 'fileName'] = filename
+              data[filename][config.filenamePropertyName || 'originalFileName'] = file
               data[filename][config.contentPropertyName || 'content'] = isText ? buffer.toString() : buffer.toString('base64'),
                 next()
             })
